@@ -1,46 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E3F2FD"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:background="#F8F9FA"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Student Dashboard"
-        android:textColor="#0D47A1"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnProfile"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="My Profile" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnResults"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="View Results" />
+        <!-- MODERN TOP HEADER -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/header_gradient"
+            android:padding="24dp">
 
-    <Button
-        android:id="@+id/btnAssignments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Assignment Uploads" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Logout" />
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome to,"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="14sp"
+                    android:letterSpacing="0.1"
+                    android:textStyle="bold" />
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tvAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student Portal Pro"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Academia Nexus"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:letterSpacing="0.02"
+                    android:textStyle="italic|bold"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher_round"
+                android:elevation="4dp"/>
+        </RelativeLayout>
+
+        <!-- DASHBOARD GRID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/rounded_top_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CAMPUS SERVICES"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E20"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:letterSpacing="0.1"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false">
+
+                <!-- Profile -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnProfile"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="👤"/>
+                        <TextView style="@style/DashboardText" android:text="My Profile"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Results -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnResults"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📊"/>
+                        <TextView style="@style/DashboardText" android:text="Results"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- GPA -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnGpa"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="🎯"/>
+                        <TextView style="@style/DashboardText" android:text="GPA Calc"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Timetable -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnTimetable"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="🗓️"/>
+                        <TextView style="@style/DashboardText" android:text="Timetable"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Assignments -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnAssignments"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📝"/>
+                        <TextView style="@style/DashboardText" android:text="Assignments"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Fees -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnFees"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="💰"/>
+                        <TextView style="@style/DashboardText" android:text="Fees"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Notifications -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnNotifications"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="🔔"/>
+                        <TextView style="@style/DashboardText" android:text="Alerts"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ID Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnIdCard"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="🪪"/>
+                        <TextView style="@style/DashboardText" android:text="ID Card"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADMINISTRATION"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E20"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:letterSpacing="0.1"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false">
+
+                <!-- Add Student -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnAddStudent"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="➕"/>
+                        <TextView style="@style/DashboardText" android:text="Add Student"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- View Students -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnViewStudents"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📋"/>
+                        <TextView style="@style/DashboardText" android:text="Registry"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Student Records -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnStudentRecords"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📁"/>
+                        <TextView style="@style/DashboardText" android:text="Records"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- News -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnNews"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📰"/>
+                        <TextView style="@style/DashboardText" android:text="Campus News"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Settings -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnSettings"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="⚙️"/>
+                        <TextView style="@style/DashboardText" android:text="Settings"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Online Students -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnApiUsers"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="🌐"/>
+                        <TextView style="@style/DashboardText" android:text="Online Directory"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Version 1.0.4 • Powered by EduKenya"
+                android:textSize="11sp"
+                android:textColor="#AAAAAA"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
