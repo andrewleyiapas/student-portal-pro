@@ -1,6 +1,6 @@
 package com.prozer.studentportalpro.models;
 
-public class User {
+public class USER {
 
     private int id;
     private String name;

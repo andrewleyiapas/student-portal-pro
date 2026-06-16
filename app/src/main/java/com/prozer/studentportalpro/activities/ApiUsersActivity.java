@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import com.prozer.studentportalpro.R;
 import com.prozer.studentportalpro.adapters.UserAdapter;
 import com.prozer.studentportalpro.api.ApiService;
 import com.prozer.studentportalpro.api.RetrofitClient;
-import com.prozer.studentportalpro.models.User;
+import com.prozer.studentportalpro.models.USER;
 
 import java.util.List;
 
@@ -75,9 +74,9 @@ public class ApiUsersActivity extends AppCompatActivity {
         swipeRefresh.setRefreshing(true);
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        apiService.getUsers().enqueue(new Callback<List<User>>() {
+        apiService.getUsers().enqueue(new Callback<List<USER>>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<List<USER>> call, Response<List<USER>> response) {
                 progressBar.setVisibility(View.GONE);
                 swipeRefresh.setRefreshing(false);
 
@@ -88,7 +87,7 @@ public class ApiUsersActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<List<USER>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 swipeRefresh.setRefreshing(false);
                 Toast.makeText(ApiUsersActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();

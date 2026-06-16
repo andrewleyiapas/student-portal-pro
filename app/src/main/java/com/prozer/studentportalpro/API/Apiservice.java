@@ -1,7 +1,7 @@
 package com.prozer.studentportalpro.api;
 
 import com.prozer.studentportalpro.models.News;
-import com.prozer.studentportalpro.models.User;
+import com.prozer.studentportalpro.models.USER;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 public interface ApiService {
 
     @GET("users")
-    Call<List<User>> getUsers();
+    Call<List<USER>> getUsers();
 
     @GET("posts")
     Call<List<News>> getNews();

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.prozer.studentportalpro.R;
 import com.prozer.studentportalpro.activities.UserDetailsActivity;
-import com.prozer.studentportalpro.models.User;
+import com.prozer.studentportalpro.models.USER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,10 @@ import java.util.List;
 public class UserAdapter
         extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private List<User> userList;
-    private List<User> fullList;
+    private List<USER> userList;
+    private List<USER> fullList;
 
-    public UserAdapter(List<User> userList) {
+    public UserAdapter(List<USER> userList) {
         this.userList = new ArrayList<>(userList);
         this.fullList = new ArrayList<>(userList);
     }
@@ -39,7 +39,7 @@ public class UserAdapter
 
             text = text.toLowerCase();
 
-            for (User user : fullList) {
+            for (USER user : fullList) {
 
                 if (user.getName()
                         .toLowerCase()
@@ -74,7 +74,7 @@ public class UserAdapter
             @NonNull UserViewHolder holder,
             int position) {
 
-        User user = userList.get(position);
+        USER user = userList.get(position);
 
         holder.txtName.setText(user.getName());
         holder.txtEmail.setText(user.getEmail());
