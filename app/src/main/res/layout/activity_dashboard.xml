@@ -190,6 +190,15 @@
                 android:columnCount="2"
                 android:alignmentMode="alignMargins"
                 android:columnOrderPreserved="false">
+                <!-- Attendance -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnAttendance"
+                    style="@style/DashboardCard">
+                    <LinearLayout style="@style/DashboardItemContainer">
+                        <TextView style="@style/DashboardEmoji" android:text="📅"/>
+                        <TextView style="@style/DashboardText" android:text="Attendance"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <!-- Add Student -->
                 <androidx.cardview.widget.CardView

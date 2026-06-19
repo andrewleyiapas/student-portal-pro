@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(
                 "CREATE TABLE " + TABLE_STUDENTS + " (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -32,10 +33,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         "regNo TEXT)"
         );
 
-        // SEED DATA - Adding 6+ students as requested
+        db.execSQL(
+                "CREATE TABLE IF NOT EXISTS Attendance (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "studentName TEXT, " +
+                        "course TEXT, " +
+                        "status TEXT)"
+        );
+
         seedData(db);
     }
-
     private void seedData(SQLiteDatabase db) {
         insertStudentSeed(db, "Pauline", "pauline@mku.ac.ke", "1234", "BBIT", "BIT/2024/001");
         insertStudentSeed(db, "Michael", "michael@mku.ac.ke", "1234", "Computer Science", "BCS/2024/042");
@@ -171,5 +178,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int result = db.delete(TABLE_STUDENTS, "id=?", new String[]{String.valueOf(id)});
         db.close();
         return result > 0;
+    }
+    public boolean addAttendance(
+            String name,
+            String course,
+            String status) {
+
+        SQLiteDatabase db =
+                this.getWritableDatabase();
+
+        ContentValues values =
+                new ContentValues();
+
+        values.put("studentName", name);
+        values.put("course", course);
+        values.put("status", status);
+
+        long result =
+                db.insert(
+                        "Attendance",
+                        null,
+                        values);
+
+        db.close();
+
+        return result != -1;
     }
 }

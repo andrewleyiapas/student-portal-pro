@@ -83,6 +83,12 @@ public class DashboardActivity extends AppCompatActivity {
                                         ApiUsersActivity.class
                                 )
                         ));
+        findViewById(R.id.btnAttendance)
+                .setOnClickListener(v ->
+                        startActivity(
+                                new Intent(
+                                        this,
+                                        AttendanceActivity.class)));
 
         // Student ID Card
         findViewById(R.id.btnIdCard)
