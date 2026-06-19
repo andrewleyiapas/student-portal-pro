@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studentportalpro">
         <activity
+            android:name=".activities.AttendanceReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AttendanceRecordsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AttendanceActivity"
             android:exported="false" />
         <activity

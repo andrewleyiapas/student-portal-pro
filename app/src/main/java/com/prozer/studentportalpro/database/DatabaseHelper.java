@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_STUDENTS = "students";
 
     public DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, 3); // Bumped to version 3
+        super(context, DB_NAME, null, 4); // Bumped to version 4 to fix missing Attendance table
     }
 
     @Override
@@ -66,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENTS);
+        db.execSQL("DROP TABLE IF EXISTS Attendance");
         onCreate(db);
     }
 
@@ -179,6 +180,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return result > 0;
     }
+    public int getPresentCount() {
+
+        SQLiteDatabase db =
+                this.getReadableDatabase();
+
+        Cursor cursor =
+                db.rawQuery(
+                        "SELECT COUNT(*) FROM Attendance WHERE status='Present'",
+                        null);
+
+        int count = 0;
+
+        if(cursor.moveToFirst())
+            count = cursor.getInt(0);
+
+        cursor.close();
+
+        return count;
+    }
+
+    public int getAbsentCount() {
+
+        SQLiteDatabase db =
+                this.getReadableDatabase();
+
+        Cursor cursor =
+                db.rawQuery(
+                        "SELECT COUNT(*) FROM Attendance WHERE status='Absent'",
+                        null);
+
+        int count = 0;
+
+        if(cursor.moveToFirst())
+            count = cursor.getInt(0);
+
+        cursor.close();
+
+        return count;
+    }
     public boolean addAttendance(
             String name,
             String course,
@@ -203,5 +243,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return result != -1;
+    }public Cursor getAllAttendance() {
+
+        SQLiteDatabase db =
+                this.getReadableDatabase();
+
+        return db.rawQuery(
+                "SELECT * FROM Attendance",
+                null);
     }
 }

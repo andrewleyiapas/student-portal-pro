@@ -13,9 +13,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Student Attendance"
+            android:text="Attendance Manager"
             android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
 
         <EditText
             android:id="@+id/etName"
@@ -27,18 +28,21 @@
             android:id="@+id/etCourse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course"/>
+            android:hint="Course"
+            android:layout_marginTop="10dp"/>
 
         <Spinner
             android:id="@+id/spStatus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/btnSaveAttendance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Attendance"/>
+            android:text="Save Attendance"
+            android:layout_marginTop="20dp"/>
 
     </LinearLayout>
 

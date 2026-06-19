@@ -12,40 +12,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.prozer.studentportalpro.R;
 import com.prozer.studentportalpro.database.DatabaseHelper;
 
-public class AttendanceActivity
-        extends AppCompatActivity {
+public class AttendanceActivity extends AppCompatActivity {
 
     EditText etName;
     EditText etCourse;
     Spinner spStatus;
-    Button btnSave;
+    Button btnSaveAttendance;
 
     DatabaseHelper databaseHelper;
 
     @Override
-    protected void onCreate(
-            Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_attendance);
 
-        setContentView(
-                R.layout.activity_attendance);
+        etName = findViewById(R.id.etName);
+        etCourse = findViewById(R.id.etCourse);
+        spStatus = findViewById(R.id.spStatus);
+        btnSaveAttendance = findViewById(R.id.btnSaveAttendance);
 
-        etName =
-                findViewById(R.id.etName);
-
-        etCourse =
-                findViewById(R.id.etCourse);
-
-        spStatus =
-                findViewById(R.id.spStatus);
-
-        btnSave =
-                findViewById(
-                        R.id.btnSaveAttendance);
-
-        databaseHelper =
-                new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         String[] status = {
                 "Present",
@@ -58,36 +44,55 @@ public class AttendanceActivity
                         android.R.layout.simple_spinner_item,
                         status);
 
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+
         spStatus.setAdapter(adapter);
 
-        btnSave.setOnClickListener(v -> {
+        btnSaveAttendance.setOnClickListener(v -> {
 
-            boolean inserted =
-                    databaseHelper.addAttendance(
+            String name =
+                    etName.getText().toString().trim();
 
-                            etName.getText()
-                                    .toString(),
+            String course =
+                    etCourse.getText().toString().trim();
 
-                            etCourse.getText()
-                                    .toString(),
+            String attendanceStatus =
+                    spStatus.getSelectedItem().toString();
 
-                            spStatus.getSelectedItem()
-                                    .toString()
-                    );
-
-            if (inserted) {
+            if(name.isEmpty() || course.isEmpty()) {
 
                 Toast.makeText(
                         this,
-                        "Attendance Saved",
+                        "Fill all fields",
                         Toast.LENGTH_SHORT
                 ).show();
+
+                return;
+            }
+
+            boolean result =
+                    databaseHelper.addAttendance(
+                            name,
+                            course,
+                            attendanceStatus);
+
+            if(result) {
+
+                Toast.makeText(
+                        this,
+                        "Attendance Saved Successfully",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                etName.setText("");
+                etCourse.setText("");
 
             } else {
 
                 Toast.makeText(
                         this,
-                        "Failed",
+                        "Failed To Save",
                         Toast.LENGTH_SHORT
                 ).show();
             }

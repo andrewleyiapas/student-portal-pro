@@ -1,6 +1,7 @@
 package com.prozer.studentportalpro.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             loggedInStudent = databaseHelper.loginStudent(email, password);
 
             if (loggedInStudent != null) {
+                SharedPreferences prefs = getSharedPreferences("StudentPortal", MODE_PRIVATE);
+                prefs.edit().putBoolean("loggedIn", true).apply();
+
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DashboardActivity.class));
                 finish();

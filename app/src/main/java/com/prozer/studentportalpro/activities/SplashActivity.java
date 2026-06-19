@@ -1,6 +1,7 @@
 package com.prozer.studentportalpro.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -28,7 +29,14 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            SharedPreferences prefs = getSharedPreferences("StudentPortal", MODE_PRIVATE);
+            boolean loggedIn = prefs.getBoolean("loggedIn", false);
+
+            if (loggedIn) {
+                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+            } else {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            }
             finish();
         }, 3000);
     }
